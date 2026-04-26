@@ -1,0 +1,48 @@
+## .NET / Build outputs
+bin/
+obj/
+out/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+*.vs/
+.idea/
+.vscode/launch.json
+
+## Test artifacts
+TestResults/
+allure-results/
+allure-report/
+playwright-report/
+test-results/
+*.trx
+*.coverage
+*.coveragexml
+coverage/
+*.log
+logs/
+
+## Playwright
+.playwright/
+.cache/
+node_modules/
+
+## Visual baselines diff/actual (keep baselines)
+tests/**/.visual/actual/
+tests/**/.visual/diff/
+
+## Auth / state
+auth/*.json
+!auth/.gitkeep
+
+## Secrets / env
+.env
+.env.*
+*.pfx
+appsettings.Local.json
+appsettings.*.Local.json
+
+## OS
+.DS_Store
+Thumbs.db

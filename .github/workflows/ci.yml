@@ -1,0 +1,155 @@
+name: CI
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main, develop]
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: Test environment
+        required: true
+        default: qa
+        type: choice
+        options: [dev, qa, staging, prod]
+      category:
+        description: Test category
+        required: true
+        default: Smoke
+        type: choice
+        options: [Smoke, Regression, E2E, Quality, All]
+
+permissions:
+  contents: read
+  checks: write
+  pull-requests: write
+
+env:
+  DOTNET_NOLOGO: 1
+  DOTNET_CLI_TELEMETRY_OPTOUT: 1
+  TEST_ENV: ${{ github.event.inputs.environment || 'qa' }}
+  CATEGORY: ${{ github.event.inputs.category || 'Smoke' }}
+
+jobs:
+  build:
+    name: Build & Verify
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 8.0.x
+
+      - name: Cache NuGet
+        uses: actions/cache@v4
+        with:
+          path: ~/.nuget/packages
+          key: nuget-${{ runner.os }}-${{ hashFiles('**/Directory.Packages.props') }}
+          restore-keys: nuget-${{ runner.os }}-
+
+      - run: dotnet restore PlaywrightWithDotnet.slnx
+      - run: dotnet build  PlaywrightWithDotnet.slnx -c Release --no-restore
+
+  test:
+    name: Test (${{ matrix.os }} / ${{ matrix.browser }})
+    needs: build
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+        browser: [Chromium, Firefox, Webkit]
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 8.0.x
+
+      - name: Cache NuGet
+        uses: actions/cache@v4
+        with:
+          path: ~/.nuget/packages
+          key: nuget-${{ runner.os }}-${{ hashFiles('**/Directory.Packages.props') }}
+
+      - run: dotnet build PlaywrightWithDotnet.slnx -c Release
+
+      - name: Install Playwright browsers
+        shell: pwsh
+        run: |
+          $script = Get-ChildItem -Recurse -Filter playwright.ps1 |
+                    Where-Object { $_.FullName -match 'Tests\.UI[\\/]bin[\\/]Release' } |
+                    Select-Object -First 1
+          if (-not $script) { throw "playwright.ps1 not found" }
+          pwsh -File $script.FullName install --with-deps ${{ matrix.browser }}
+
+      - name: Run tests
+        shell: pwsh
+        env:
+          TEST_ENV: ${{ env.TEST_ENV }}
+          PWFX_Framework__Browser__Enabled__0: ${{ matrix.browser }}
+        run: |
+          pwsh -File scripts/run-tests.ps1 `
+            -Configuration Release `
+            -Environment ${{ env.TEST_ENV }} `
+            -Category ${{ env.CATEGORY }} `
+            -Browsers ${{ matrix.browser }} `
+            -Suite All
+
+      - name: Upload TRX
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: trx-${{ matrix.os }}-${{ matrix.browser }}
+          path: TestResults/**/*.trx
+
+      - name: Upload Allure results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: allure-results-${{ matrix.os }}-${{ matrix.browser }}
+          path: |
+            tests/**/allure-results/**
+            tests/**/bin/Release/net8.0/allure-results/**
+
+      - name: Upload failure artefacts
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: failure-artifacts-${{ matrix.os }}-${{ matrix.browser }}
+          path: |
+            TestResults/artifacts/**
+            TestResults/logs/**
+
+  publish-allure:
+    name: Publish Allure to GitHub Pages
+    needs: test
+    if: github.ref == 'refs/heads/main' && always()
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/download-artifact@v4
+        with:
+          path: artifacts
+
+      - name: Aggregate allure results
+        run: |
+          mkdir -p allure-results
+          find artifacts -type d -name allure-results -exec sh -c 'cp -r "$1"/* allure-results/ 2>/dev/null || true' _ {} \;
+
+      - uses: simple-elf/allure-report-action@v1.9
+        with:
+          allure_results: allure-results
+          allure_history: allure-history
+          gh_pages: gh-pages
+
+      - uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_branch: gh-pages
+          publish_dir: allure-history

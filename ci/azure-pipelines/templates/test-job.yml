@@ -1,0 +1,71 @@
+parameters:
+  - name: browser
+    type: string
+  - name: environment
+    type: string
+  - name: category
+    type: string
+
+jobs:
+  - job: Test_${{ parameters.browser }}
+    displayName: 'Test (${{ parameters.browser }})'
+    pool: { vmImage: ubuntu-latest }
+    steps:
+      - task: UseDotNet@2
+        inputs: { version: 8.0.x }
+
+      - task: DotNetCoreCLI@2
+        displayName: Build
+        inputs:
+          command: build
+          projects: PlaywrightWithDotnet.slnx
+          arguments: '-c Release'
+
+      - task: PowerShell@2
+        displayName: Install Playwright
+        inputs:
+          targetType: inline
+          script: |
+            $script = Get-ChildItem -Recurse -Filter playwright.ps1 |
+                      Where-Object { $_.FullName -match 'Tests\.UI[\\/]bin[\\/]Release' } |
+                      Select-Object -First 1
+            if (-not $script) { throw 'playwright.ps1 not found' }
+            pwsh -File $script.FullName install --with-deps ${{ parameters.browser }}
+
+      - task: PowerShell@2
+        displayName: Run tests
+        env:
+          TEST_ENV: ${{ parameters.environment }}
+          PWFX_Framework__Browser__Enabled__0: ${{ parameters.browser }}
+        inputs:
+          targetType: inline
+          script: |
+            pwsh -File scripts/run-tests.ps1 `
+              -Configuration Release `
+              -Environment ${{ parameters.environment }} `
+              -Category ${{ parameters.category }} `
+              -Browsers ${{ parameters.browser }} `
+              -Suite All
+
+      - task: PublishTestResults@2
+        condition: always()
+        inputs:
+          testResultsFormat: VSTest
+          testResultsFiles: '**/*.trx'
+          mergeTestResults: true
+          testRunTitle: ${{ parameters.browser }}
+
+      - task: PublishPipelineArtifact@1
+        condition: always()
+        displayName: Publish Allure results
+        inputs:
+          targetPath: $(System.DefaultWorkingDirectory)
+          path: '**/allure-results/**'
+          artifact: allure-${{ parameters.browser }}
+
+      - task: PublishPipelineArtifact@1
+        condition: failed()
+        displayName: Publish failure artefacts
+        inputs:
+          targetPath: TestResults
+          artifact: failures-${{ parameters.browser }}

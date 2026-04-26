@@ -1,0 +1,18 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/Framework.Api/Framework.Api.csproj" />
+    <Project Path="src/Framework.Configuration/Framework.Configuration.csproj" />
+    <Project Path="src/Framework.Core/Framework.Core.csproj" />
+    <Project Path="src/Framework.Data/Framework.Data.csproj" />
+    <Project Path="src/Framework.Reporting/Framework.Reporting.csproj" />
+    <Project Path="src/Framework.UI/Framework.UI.csproj" />
+    <Project Path="src/Framework.Utilities/Framework.Utilities.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/Tests.Api/Tests.Api.csproj" />
+    <Project Path="tests/Tests.Bdd/Tests.Bdd.csproj" />
+    <Project Path="tests/Tests.Common/Tests.Common.csproj" />
+    <Project Path="tests/Tests.E2E/Tests.E2E.csproj" />
+    <Project Path="tests/Tests.UI/Tests.UI.csproj" />
+  </Folder>
+</Solution>

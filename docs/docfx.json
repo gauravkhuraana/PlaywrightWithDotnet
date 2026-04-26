@@ -1,0 +1,30 @@
+{
+  "metadata": [
+    {
+      "src": [
+        { "files": ["src/**/*.csproj"], "src": ".." }
+      ],
+      "dest": "api",
+      "disableGitFeatures": true
+    }
+  ],
+  "build": {
+    "content": [
+      { "files": ["api/**.yml", "api/index.md"] },
+      {
+        "files": ["**.md", "toc.yml"],
+        "exclude": ["obj/**", "_site/**"]
+      }
+    ],
+    "resource": [
+      { "files": ["images/**"] }
+    ],
+    "output": "_site",
+    "globalMetadata": {
+      "_appName": "Playwright .NET Framework",
+      "_appTitle": "Playwright .NET Framework",
+      "_enableSearch": true
+    },
+    "template": ["default", "modern"]
+  }
+}

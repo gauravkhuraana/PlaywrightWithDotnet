@@ -1,0 +1,60 @@
+trigger:
+  branches:
+    include: [main, develop]
+
+pr:
+  branches:
+    include: [main, develop]
+
+parameters:
+  - name: environment
+    displayName: Test environment
+    type: string
+    default: qa
+    values: [dev, qa, staging, prod]
+  - name: category
+    displayName: Test category
+    type: string
+    default: Smoke
+    values: [Smoke, Regression, E2E, Quality, All]
+  - name: browsers
+    displayName: Browsers
+    type: object
+    default:
+      - Chromium
+
+variables:
+  - name: dotnetVersion
+    value: 8.0.x
+  - name: solution
+    value: PlaywrightWithDotnet.slnx
+  - name: buildConfiguration
+    value: Release
+
+stages:
+  - stage: Build
+    jobs:
+      - job: Build
+        pool: { vmImage: ubuntu-latest }
+        steps:
+          - task: UseDotNet@2
+            inputs: { version: $(dotnetVersion) }
+          - task: DotNetCoreCLI@2
+            inputs:
+              command: restore
+              projects: $(solution)
+          - task: DotNetCoreCLI@2
+            inputs:
+              command: build
+              projects: $(solution)
+              arguments: '-c $(buildConfiguration) --no-restore'
+
+  - stage: Test
+    dependsOn: Build
+    jobs:
+      - ${{ each browser in parameters.browsers }}:
+          - template: ci/azure-pipelines/templates/test-job.yml
+            parameters:
+              browser: ${{ browser }}
+              environment: ${{ parameters.environment }}
+              category: ${{ parameters.category }}

@@ -1,0 +1,27 @@
+name: playwrightwithdotnet
+
+services:
+  tests:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+    image: playwrightwithdotnet:latest
+    environment:
+      TEST_ENV: ${TEST_ENV:-qa}
+      TEST_CATEGORY: ${TEST_CATEGORY:-Smoke}
+      TEST_SUITE: ${TEST_SUITE:-All}
+      BROWSERS: ${BROWSERS:-Chromium}
+    volumes:
+      - ../TestResults:/work/TestResults
+      - ../allure-results:/work/allure-results
+
+  allure:
+    image: frankescobar/allure-docker-service:2.30.0
+    ports:
+      - "5252:5050"
+    environment:
+      CHECK_RESULTS_EVERY_SECONDS: 5
+      KEEP_HISTORY: 1
+    volumes:
+      - ../allure-results:/app/allure-results
+      - ../allure-report:/app/default-reports

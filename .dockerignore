@@ -1,0 +1,15 @@
+obj/
+bin/
+TestResults/
+allure-results/
+allure-report/
+.git/
+.github/
+.idea/
+.vs/
+.vscode/
+node_modules/
+**/.baselines/
+**/.visual/
+docs/_site/
+*.user

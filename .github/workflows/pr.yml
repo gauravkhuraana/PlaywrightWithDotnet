@@ -1,0 +1,43 @@
+name: PR Smoke
+
+on:
+  pull_request:
+    branches: [main, develop]
+
+permissions:
+  contents: read
+  checks: write
+  pull-requests: write
+
+jobs:
+  smoke:
+    name: Smoke (chromium)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-dotnet@v4
+        with: { dotnet-version: 8.0.x }
+
+      - run: dotnet build PlaywrightWithDotnet.slnx -c Release
+
+      - name: Install Playwright (chromium)
+        shell: pwsh
+        run: |
+          $script = Get-ChildItem -Recurse -Filter playwright.ps1 |
+                    Where-Object { $_.FullName -match 'Tests\.UI[\\/]bin[\\/]Release' } |
+                    Select-Object -First 1
+          pwsh -File $script.FullName install --with-deps chromium
+
+      - name: Run smoke
+        shell: pwsh
+        env:
+          TEST_ENV: qa
+          PWFX_Framework__Browser__Enabled__0: Chromium
+        run: |
+          pwsh -File scripts/run-tests.ps1 -Configuration Release -Environment qa -Category Smoke -Browsers Chromium -Suite All
+
+      - if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: trx-pr-smoke
+          path: TestResults/**/*.trx

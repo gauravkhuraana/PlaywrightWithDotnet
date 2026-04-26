@@ -1,0 +1,47 @@
+name: Nightly Full Run
+
+on:
+  schedule:
+    - cron: '0 2 * * *'   # 02:00 UTC daily
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  nightly:
+    name: Full Regression
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        browser: [Chromium, Firefox, Webkit]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-dotnet@v4
+        with: { dotnet-version: 8.0.x }
+
+      - run: dotnet build PlaywrightWithDotnet.slnx -c Release
+
+      - name: Install Playwright
+        shell: pwsh
+        run: |
+          $script = Get-ChildItem -Recurse -Filter playwright.ps1 |
+                    Where-Object { $_.FullName -match 'Tests\.UI[\\/]bin[\\/]Release' } |
+                    Select-Object -First 1
+          pwsh -File $script.FullName install --with-deps ${{ matrix.browser }}
+
+      - name: Run regression
+        shell: pwsh
+        env:
+          TEST_ENV: qa
+        run: |
+          pwsh -File scripts/run-tests.ps1 -Configuration Release -Environment qa -Category All -Browsers ${{ matrix.browser }} -Suite All
+
+      - if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: nightly-${{ matrix.browser }}
+          path: |
+            TestResults/**
+            tests/**/allure-results/**

@@ -1,0 +1,38 @@
+- name: Home
+  href: index.md
+- name: Getting Started
+  href: getting-started.md
+- name: Architecture
+  href: architecture.md
+- name: Configuration
+  href: configuration.md
+- name: Writing Tests
+  items:
+    - name: UI
+      href: writing-ui-tests.md
+    - name: API
+      href: writing-api-tests.md
+    - name: E2E
+      href: writing-e2e-tests.md
+    - name: BDD
+      href: writing-bdd-tests.md
+- name: Reports
+  href: reports.md
+- name: Running in CI
+  href: running-in-ci.md
+- name: Running in Docker
+  href: running-in-docker.md
+- name: Troubleshooting
+  href: troubleshooting.md
+- name: ADRs
+  items:
+    - name: 0001 — .NET 8 + NUnit
+      href: adr/0001-net8-nunit.md
+    - name: 0002 — Reqnroll for BDD
+      href: adr/0002-reqnroll-bdd.md
+    - name: 0003 — Allure Reporting
+      href: adr/0003-allure-reporting.md
+    - name: 0004 — DI and Modules
+      href: adr/0004-di-and-modules.md
+    - name: 0005 — Multi-browser Parallelism
+      href: adr/0005-multi-browser-parallelism.md

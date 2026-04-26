@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <RootNamespace>Tests.Common</RootNamespace>
+    <AssemblyName>Tests.Common</AssemblyName>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\Framework.UI\Framework.UI.csproj" />
+    <ProjectReference Include="..\..\src\Framework.Api\Framework.Api.csproj" />
+    <ProjectReference Include="..\..\src\Framework.Reporting\Framework.Reporting.csproj" />
+    <ProjectReference Include="..\..\src\Framework.Data\Framework.Data.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="NUnit" />
+    <PackageReference Include="Allure.NUnit" />
+    <PackageReference Include="FluentAssertions" />
+  </ItemGroup>
+</Project>
