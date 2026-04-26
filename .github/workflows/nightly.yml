@@ -29,7 +29,8 @@ jobs:
           $script = Get-ChildItem -Recurse -Filter playwright.ps1 |
                     Where-Object { $_.FullName -match 'Tests\.UI[\\/]bin[\\/]Release' } |
                     Select-Object -First 1
-          pwsh -File $script.FullName install --with-deps ${{ matrix.browser }}
+          $browser = '${{ matrix.browser }}'.ToLower()
+          pwsh -File $script.FullName install --with-deps $browser
 
       - name: Run regression
         shell: pwsh
