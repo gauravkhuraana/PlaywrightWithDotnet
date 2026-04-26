@@ -1,0 +1,5 @@
+"Status","Start Time","Stop Time","Duration in ms","Parent Suite","Suite","Sub Suite","Test Class","Test Method","Name","Description"
+"passed","Sun Apr 26 12:26:23 UTC 2026","Sun Apr 26 12:26:23 UTC 2026","23","","API","","HealthTests","Root_Endpoint_Returns_Successful_Response","Root_Endpoint_Returns_Successful_Response",""
+"passed","Sun Apr 26 12:26:15 UTC 2026","Sun Apr 26 12:26:16 UTC 2026","1506","","UI","","ScenariosPageTests","Can_Capture_Screenshot_Of_Scenarios_Page","Can_Capture_Screenshot_Of_Scenarios_Page",""
+"passed","Sun Apr 26 12:26:16 UTC 2026","Sun Apr 26 12:26:18 UTC 2026","1344","","UI","","ScenariosPageTests","Scenarios_Page_Loads_Successfully","Scenarios_Page_Loads_Successfully",""
+"passed","Sun Apr 26 12:26:22 UTC 2026","Sun Apr 26 12:26:23 UTC 2026","1223","","API","","HealthTests","Correlation_Id_Is_Generated_When_Not_Supplied","Correlation_Id_Is_Generated_When_Not_Supplied",""
