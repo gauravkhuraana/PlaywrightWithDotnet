@@ -3,8 +3,8 @@
     "directory": "allure-results",
     "title": "PlaywrightWithDotnet API Tests",
     "links": [
-      { "type": "issue", "urlTemplate": "https://example.com/issue/{}" },
-      { "type": "tms", "urlTemplate": "https://example.com/tms/{}" }
+      "https://example.com/issue/{}",
+      "https://example.com/tms/{}"
     ]
   }
 }

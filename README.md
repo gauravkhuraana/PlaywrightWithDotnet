@@ -154,13 +154,13 @@ sequenceDiagram
 
 ```mermaid
 flowchart LR
-    Feature[".feature file"] --> Reqnroll[Reqnroll Generator]
-    Reqnroll --> NUnitFx[NUnit Fixture<br/>(generated .feature.cs)]
+    Feature[".feature file"] --> Reqnroll["Reqnroll Generator"]
+    Reqnroll --> NUnitFx["NUnit Fixture<br/>(generated .feature.cs)"]
     NUnitFx --> Steps["[Binding] Step Definitions"]
-    Steps --> Root[(FrameworkServiceProvider.Root)]
-    Root --> UI[Framework.UI / Framework.Api]
-    NUnitFx --> AllureR[Allure.Reqnroll]
-    AllureR --> Results[(allure-results)]
+    Steps --> Root[("FrameworkServiceProvider.Root")]
+    Root --> UI["Framework.UI / Framework.Api"]
+    NUnitFx --> AllureR["Allure.Reqnroll"]
+    AllureR --> Results[("allure-results")]
 ```
 
 ### Configuration loading order

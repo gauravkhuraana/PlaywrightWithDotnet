@@ -45,3 +45,37 @@ jobs:
           path: |
             TestResults/**
             tests/**/allure-results/**
+            tests/**/bin/Release/net8.0/allure-results/**
+
+  publish-allure:
+    name: Publish Nightly Allure to GitHub Pages
+    needs: nightly
+    if: always()
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/download-artifact@v4
+        with:
+          path: artifacts
+
+      - name: Aggregate allure results
+        run: |
+          mkdir -p allure-results
+          find artifacts -type d -name allure-results -exec sh -c 'cp -r "$1"/* allure-results/ 2>/dev/null || true' _ {} \;
+
+      - uses: simple-elf/allure-report-action@v1.9
+        with:
+          allure_results: allure-results
+          allure_history: allure-history
+          gh_pages: gh-pages
+          subfolder: nightly
+
+      - uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_branch: gh-pages
+          publish_dir: allure-history
+          keep_files: true
