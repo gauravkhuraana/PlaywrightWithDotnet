@@ -67,16 +67,40 @@ jobs:
           mkdir -p allure-results
           find artifacts -type d -name allure-results -exec sh -c 'cp -r "$1"/* allure-results/ 2>/dev/null || true' _ {} \;
 
-      - uses: simple-elf/allure-report-action@v1.9
+      - name: Checkout gh-pages (for history)
+        uses: actions/checkout@v4
         with:
-          allure_results: allure-results
-          allure_history: allure-history
-          gh_pages: gh-pages
-          subfolder: nightly
+          ref: gh-pages
+          path: gh-pages
+        continue-on-error: true
+
+      - name: Restore previous history
+        run: |
+          if [ -d gh-pages/nightly/history ]; then
+            mkdir -p allure-results/history
+            cp -r gh-pages/nightly/history/* allure-results/history/ || true
+          fi
+
+      - name: Setup Java (for Allure CLI)
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      - name: Install Allure CLI
+        run: |
+          ALLURE_VERSION=2.29.0
+          curl -sL https://github.com/allure-framework/allure2/releases/download/${ALLURE_VERSION}/allure-${ALLURE_VERSION}.tgz -o allure.tgz
+          tar -xzf allure.tgz
+          echo "$PWD/allure-${ALLURE_VERSION}/bin" >> $GITHUB_PATH
+
+      - name: Generate Allure report
+        run: allure generate allure-results -o allure-report --clean
 
       - uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_branch: gh-pages
-          publish_dir: allure-history
+          publish_dir: allure-report
+          destination_dir: nightly
           keep_files: true
