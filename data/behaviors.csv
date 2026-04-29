@@ -1,5 +1,5 @@
 "Epic","Feature","Story","FAILED","BROKEN","PASSED","SKIPPED","UNKNOWN"
+"","Health","Correlation id is propagated","0","0","1","0","0"
+"","Practise Scenarios","Scenarios page loads","0","0","1","0","0"
 "","Health","API root is reachable","0","0","1","0","0"
 "","Practise Scenarios","Page screenshot can be captured","0","0","1","0","0"
-"","Practise Scenarios","Scenarios page loads","0","0","1","0","0"
-"","Health","Correlation id is propagated","0","0","1","0","0"
