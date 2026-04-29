@@ -1,4 +1,4 @@
-# PlaywrightWithDotnet
+# PlaywrightWithDotnet  
 
 Enterprise-grade test automation framework for **UI + API + E2E** testing built on **Playwright .NET 8**, **NUnit**, and **Reqnroll (BDD)**. Designed for scale: parallel multi-browser execution, dependency injection, layered configuration, Azure Key Vault secrets, Allure reporting, Docker, and dual CI (GitHub Actions + Azure DevOps).
 
