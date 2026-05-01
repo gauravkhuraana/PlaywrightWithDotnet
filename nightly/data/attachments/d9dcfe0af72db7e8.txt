@@ -1,0 +1,4 @@
+[05:31:50 INF] --- BEGIN Tests.UI.QualityGateTests(Chromium).Visual_Baseline_For_Scenarios_Page ---
+[05:31:50 INF] Navigating to #/scenarios
+[05:31:52 INF] Visual baseline created for Visual_Baseline_For_Scenarios_Page
+[05:31:52 INF] --- END Tests.UI.QualityGateTests(Chromium).Visual_Baseline_For_Scenarios_Page [Passed] ---
