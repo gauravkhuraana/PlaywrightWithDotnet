@@ -28,8 +28,8 @@ namespace Tests.Bdd.Features
         
         private static string[] featureTags = ((string[])(null));
         
-        private static global::Reqnroll.FeatureInfo featureInfo = new global::Reqnroll.FeatureInfo(new System.Globalization.CultureInfo("en"), "Features", "Practise API health", ("  As a QA engineer\n  I want to ensure the practise API is reachable\n  So that dow" +
-                "nstream UI and E2E flows can rely on it."), global::Reqnroll.ProgrammingLanguage.CSharp, featureTags);
+        private static global::Reqnroll.FeatureInfo featureInfo = new global::Reqnroll.FeatureInfo(new System.Globalization.CultureInfo("en"), "Features", "Practise API health", ("  As a QA engineer\r\n  I want to ensure the practise API is reachable\r\n  So that d" +
+                "ownstream UI and E2E flows can rely on it."), global::Reqnroll.ProgrammingLanguage.CSharp, featureTags);
         
 #line 1 "PractiseApi.feature"
 #line hidden

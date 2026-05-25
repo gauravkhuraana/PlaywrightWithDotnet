@@ -28,8 +28,8 @@ namespace Tests.Bdd.Features
         
         private static string[] featureTags = ((string[])(null));
         
-        private static global::Reqnroll.FeatureInfo featureInfo = new global::Reqnroll.FeatureInfo(new System.Globalization.CultureInfo("en"), "Features", "Practise UI smoke", ("  As a QA engineer\n  I want to verify the practise UI scenarios page loads\n  So t" +
-                "hat UI flows can run reliably."), global::Reqnroll.ProgrammingLanguage.CSharp, featureTags);
+        private static global::Reqnroll.FeatureInfo featureInfo = new global::Reqnroll.FeatureInfo(new System.Globalization.CultureInfo("en"), "Features", "Practise UI smoke", ("  As a QA engineer\r\n  I want to verify the practise UI scenarios page loads\r\n  So" +
+                " that UI flows can run reliably."), global::Reqnroll.ProgrammingLanguage.CSharp, featureTags);
         
 #line 1 "PractiseUi.feature"
 #line hidden
