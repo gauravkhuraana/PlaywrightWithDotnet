@@ -214,6 +214,21 @@ pwsh ./scripts/run-tests.ps1 -Suite All -Category Smoke -Environment qa -Browser
 pwsh ./scripts/allure-serve.ps1
 ```
 
+### Documentation example: run sample tests locally
+
+Use this minimal sequence to run a local sample smoke test with Chromium:
+
+```powershell
+pwsh ./scripts/install-browsers.ps1
+pwsh ./scripts/run-tests.ps1 -Suite All -Category Smoke -Environment qa -Browsers Chromium
+```
+
+For API-only validation, you can run:
+
+```powershell
+dotnet test tests/Tests.Api/Tests.Api.csproj --filter "Category=Smoke"
+```
+
 ## Solution Layout
 
 ```
