@@ -1,0 +1,4 @@
+[05:45:12 INF] --- BEGIN Tests.Api.PractiseApiTests.Custom_Headers_Are_Sent ---
+[05:45:12 INF] [0735714cbf3d4eb09e5476e4d43cc49e] Get https://gauravkhurana.com/practise-api/
+[05:45:12 INF] [0735714cbf3d4eb09e5476e4d43cc49e] -> 200 OK in 6ms
+[05:45:12 INF] --- END Tests.Api.PractiseApiTests.Custom_Headers_Are_Sent [Passed] ---

@@ -1,0 +1,4 @@
+[05:44:56 INF] --- BEGIN Tests.Api.HealthTests.Root_Endpoint_Returns_Successful_Response ---
+[05:44:56 INF] [9bcaf827c3a44525966243de18b5cdc0] Get https://gauravkhurana.com/practise-api/
+[05:44:56 INF] [9bcaf827c3a44525966243de18b5cdc0] -> 200 OK in 9ms
+[05:44:57 INF] --- END Tests.Api.HealthTests.Root_Endpoint_Returns_Successful_Response [Passed] ---
