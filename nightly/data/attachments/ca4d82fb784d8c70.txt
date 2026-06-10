@@ -1,0 +1,3 @@
+[06:11:36 INF] --- BEGIN Tests.UI.ScenariosPageTests(Firefox).Can_Capture_Screenshot_Of_Scenarios_Page ---
+[06:11:37 INF] Navigating to #/scenarios
+[06:11:39 INF] --- END Tests.UI.ScenariosPageTests(Firefox).Can_Capture_Screenshot_Of_Scenarios_Page [Passed] ---
