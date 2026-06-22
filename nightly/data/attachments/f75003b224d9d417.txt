@@ -1,0 +1,3 @@
+[07:09:44 INF] --- BEGIN Tests.UI.ScenariosPageTests(Webkit).Scenarios_Page_Loads_Successfully ---
+[07:09:44 INF] Navigating to #/scenarios
+[07:09:45 INF] --- END Tests.UI.ScenariosPageTests(Webkit).Scenarios_Page_Loads_Successfully [Passed] ---
