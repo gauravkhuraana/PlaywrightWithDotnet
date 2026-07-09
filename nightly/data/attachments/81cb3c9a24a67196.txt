@@ -1,0 +1,4 @@
+[05:53:09 INF] --- BEGIN Tests.Api.HealthTests.Correlation_Id_Is_Generated_When_Not_Supplied ---
+[05:53:09 INF] [487b8c4845c540439763ced6027b068c] Get https://gauravkhurana.com/practise-api/
+[05:53:10 INF] [487b8c4845c540439763ced6027b068c] -> 200 OK in 239ms
+[05:53:10 INF] --- END Tests.Api.HealthTests.Correlation_Id_Is_Generated_When_Not_Supplied [Passed] ---
