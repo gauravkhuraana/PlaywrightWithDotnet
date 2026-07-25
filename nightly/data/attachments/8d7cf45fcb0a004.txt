@@ -1,0 +1,3 @@
+[04:52:48 INF] --- BEGIN Tests.UI.ScenariosPageTests(Firefox).Scenarios_Page_Loads_Successfully ---
+[04:52:49 INF] Navigating to #/scenarios
+[04:52:51 INF] --- END Tests.UI.ScenariosPageTests(Firefox).Scenarios_Page_Loads_Successfully [Passed] ---
