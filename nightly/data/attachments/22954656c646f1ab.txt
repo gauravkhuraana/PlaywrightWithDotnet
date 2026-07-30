@@ -1,0 +1,4 @@
+[04:43:48 INF] --- BEGIN Tests.E2E.UiAndApiJourneyTests(Firefox).Ui_And_Api_Are_Both_Available ---
+[04:43:51 INF] [2e85cf69f60541d385984f7a535f124e] Get https://gauravkhurana.com/practise-api/
+[04:43:51 INF] [2e85cf69f60541d385984f7a535f124e] -> 200 OK in 84ms
+[04:43:52 INF] --- END Tests.E2E.UiAndApiJourneyTests(Firefox).Ui_And_Api_Are_Both_Available [Passed] ---
