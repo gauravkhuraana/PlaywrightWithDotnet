@@ -1,0 +1,3 @@
+[03:15:17 INF] --- BEGIN Tests.UI.ScenariosPageTests(Chromium).Scenarios_Page_Loads_Successfully ---
+[03:15:17 INF] Navigating to #/scenarios
+[03:15:18 INF] --- END Tests.UI.ScenariosPageTests(Chromium).Scenarios_Page_Loads_Successfully [Passed] ---
