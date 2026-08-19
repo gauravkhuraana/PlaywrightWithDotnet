@@ -1,0 +1,4 @@
+[02:48:31 INF] --- BEGIN Tests.Api.PractiseApiTests.Post_With_Json_Body_Includes_Content_Type ---
+[02:48:31 INF] [fb80a42eb7d64631971eb6da065ffb85] Post https://gauravkhurana.com/practise-api/
+[02:48:31 INF] [fb80a42eb7d64631971eb6da065ffb85] -> 405 Method Not Allowed in 6ms
+[02:48:31 INF] --- END Tests.Api.PractiseApiTests.Post_With_Json_Body_Includes_Content_Type [Passed] ---

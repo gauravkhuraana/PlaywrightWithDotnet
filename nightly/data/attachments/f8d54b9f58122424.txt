@@ -1,0 +1,3 @@
+[02:48:21 INF] --- BEGIN Tests.UI.ScenariosPageTests(Chromium).Can_Capture_Screenshot_Of_Scenarios_Page ---
+[02:48:21 INF] Navigating to #/scenarios
+[02:48:23 INF] --- END Tests.UI.ScenariosPageTests(Chromium).Can_Capture_Screenshot_Of_Scenarios_Page [Passed] ---
