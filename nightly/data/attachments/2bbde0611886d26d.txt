@@ -1,0 +1,4 @@
+[12:05:09 INF] --- BEGIN Tests.UI.QualityGateTests(Firefox).Accessibility_Scan_Reports_No_Critical_Violations ---
+[12:05:11 INF] Navigating to #/scenarios
+[12:05:13 INF] Running Axe accessibility scan
+[12:05:15 INF] --- END Tests.UI.QualityGateTests(Firefox).Accessibility_Scan_Reports_No_Critical_Violations [Passed] ---
