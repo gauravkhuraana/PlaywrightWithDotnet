@@ -1,0 +1,2 @@
+[06:51:53 INF] --- BEGIN Tests.UI.QualityGateTests(Chromium).Visual_Baseline_For_Scenarios_Page ---
+[06:51:53 INF] --- END Tests.UI.QualityGateTests(Chromium).Visual_Baseline_For_Scenarios_Page [Failed] ---
