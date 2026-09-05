@@ -1,0 +1,20 @@
+[06:24:59 INF] --- BEGIN Tests.E2E.UiAndApiJourneyTests(Webkit).Ui_And_Api_Are_Both_Available ---
+[06:25:01 INF] [c7909b8a94194743b665936569c6c3d5] Get https://gauravkhurana.com/practise-api/
+[06:25:01 WRN] Retry 1/3 after 378.7542ms
+Microsoft.Playwright.PlaywrightException: read ECONNRESET
+Call log:
+  -   - → GET https://gauravkhurana.com/practise-api/
+  -     - user-agent: Playwright/1.49.0 (x64; ubuntu 24.04) csharp/8.0 CI/1
+  -     - accept: */*
+  -     - accept-encoding: gzip,deflate,br
+  -     - X-Correlation-Id: c7909b8a94194743b665936569c6c3d5
+   at Microsoft.Playwright.Transport.Connection.InnerSendMessageToServerAsync[T](ChannelOwner object, String method, Dictionary`2 dictionary, Boolean keepNulls) in /_/src/Playwright/Transport/Connection.cs:line 206
+   at Microsoft.Playwright.Transport.Connection.WrapApiCallAsync[T](Func`1 action, Boolean isInternal) in /_/src/Playwright/Transport/Connection.cs:line 535
+   at Microsoft.Playwright.Core.APIRequestContext.FetchAsync(String url, APIRequestContextOptions options) in /_/src/Playwright/Core/APIRequestContext.cs:line 158
+   at Framework.Api.Http.ApiClient.DispatchAsync(ApiRequest request, String url, Dictionary`2 headers, String body) in /home/runner/work/PlaywrightWithDotnet/PlaywrightWithDotnet/src/Framework.Api/Http/ApiClient.cs:line 83
+   at Framework.Api.Http.ApiClient.<>c__DisplayClass5_0.<<SendAsync>b__2>d.MoveNext() in /home/runner/work/PlaywrightWithDotnet/PlaywrightWithDotnet/src/Framework.Api/Http/ApiClient.cs:line 47
+--- End of stack trace from previous location ---
+   at Polly.ResiliencePipeline.<>c__10`1.<<ExecuteAsync>b__10_0>d.MoveNext()
+[06:25:01 INF] [c7909b8a94194743b665936569c6c3d5] Get https://gauravkhurana.com/practise-api/
+[06:25:01 INF] [c7909b8a94194743b665936569c6c3d5] -> 200 OK in 569ms
+[06:25:01 INF] --- END Tests.E2E.UiAndApiJourneyTests(Webkit).Ui_And_Api_Are_Both_Available [Passed] ---
