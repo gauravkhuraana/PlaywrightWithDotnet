@@ -1,0 +1,4 @@
+[07:43:36 INF] --- BEGIN Tests.UI.QualityGateTests(Chromium).Accessibility_Scan_Reports_No_Critical_Violations ---
+[07:43:37 INF] Navigating to #/scenarios
+[07:43:38 INF] Running Axe accessibility scan
+[07:43:39 INF] --- END Tests.UI.QualityGateTests(Chromium).Accessibility_Scan_Reports_No_Critical_Violations [Passed] ---
