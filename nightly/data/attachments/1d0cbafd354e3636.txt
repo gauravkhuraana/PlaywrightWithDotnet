@@ -1,0 +1,4 @@
+[08:47:48 INF] --- BEGIN Tests.Api.PractiseApiTests.Get_With_Query_Parameters_Builds_Correct_Url ---
+[08:47:48 INF] [f327093916c7489f934a5735fb88348d] Get https://gauravkhurana.com/practise-api/?q=ping&page=1
+[08:47:48 INF] [f327093916c7489f934a5735fb88348d] -> 200 OK in 9ms
+[08:47:48 INF] --- END Tests.Api.PractiseApiTests.Get_With_Query_Parameters_Builds_Correct_Url [Passed] ---
